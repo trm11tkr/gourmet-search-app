@@ -15,6 +15,7 @@
 		7B0952FA2852EEAD00A343BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */; };
 		7B9AD5E028531ECC003BCE9A /* Gourmet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */; };
 		7B9AD5E328533EC3003BCE9A /* tableware.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9AD5E228533EC3003BCE9A /* tableware.png */; };
+		7B9AD5E528534BA0003BCE9A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		7B0952FB2852EEAE00A343BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gourmet.swift; sourceTree = "<group>"; };
 		7B9AD5E228533EC3003BCE9A /* tableware.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableware.png; sourceTree = "<group>"; };
+		7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				7B0952EF2852EEAA00A343BA /* SceneDelegate.swift */,
 				7B0952F12852EEAA00A343BA /* ViewController.swift */,
 				7B0952F32852EEAA00A343BA /* Main.storyboard */,
+				7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */,
 				7B0952F62852EEAD00A343BA /* Assets.xcassets */,
 				7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */,
 				7B0952FB2852EEAE00A343BA /* Info.plist */,
@@ -164,6 +167,7 @@
 				7B0952F22852EEAA00A343BA /* ViewController.swift in Sources */,
 				7B0952EE2852EEAA00A343BA /* AppDelegate.swift in Sources */,
 				7B0952F02852EEAA00A343BA /* SceneDelegate.swift in Sources */,
+				7B9AD5E528534BA0003BCE9A /* ShopDetailViewController.swift in Sources */,
 				7B9AD5E028531ECC003BCE9A /* Gourmet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

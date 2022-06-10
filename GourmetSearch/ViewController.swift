@@ -12,8 +12,16 @@
                 self.request(range: 3)
             }
             
+            override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                if segue.identifier == "ToShopDetailViewController" {
+                    if let nextVC = segue.destination as? ShopDetailViewController {
+                        let index = sender as! Int
+                        nextVC.shop = shops[index]
+                    }
+                }
+            }
+            
             @IBAction func rangeSelect(_ sender: UISegmentedControl) {
-                print(sender.selectedSegmentIndex + 1)
                 let range = sender.selectedSegmentIndex + 1
                 self.request(range: range)
             }
@@ -82,6 +90,14 @@
                 imageView.image = UIImage(url: shop.logo_image)
             
                 return cell
+            }
+            
+            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                print(shops[indexPath.row].name)
+                
+                tableView.deselectRow(at: indexPath, animated: true)
+                
+                performSegue(withIdentifier: "ToShopDetailViewController", sender: indexPath.row)
             }
         }
 
