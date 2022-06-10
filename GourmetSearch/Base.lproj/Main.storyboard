@@ -29,6 +29,9 @@
                                     <segment title="3km"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="rangeSelect:" destination="BYZ-38-t0r" eventType="valueChanged" id="kQR-GG-fTZ"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Osv-5M-9BC">
                                 <rect key="frame" x="0.0" y="193" width="390" height="651"/>
@@ -94,6 +97,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="グルメサーチ" id="NJY-an-Fzi"/>
                     <connections>
+                        <outlet property="range" destination="kjK-2K-TID" id="MyG-OB-JHw"/>
                         <outlet property="shopListTable" destination="Osv-5M-9BC" id="THF-d4-7CN"/>
                     </connections>
                 </viewController>

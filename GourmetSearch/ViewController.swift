@@ -1,6 +1,7 @@
         import UIKit
 
         class ViewController: UIViewController {
+            @IBOutlet weak var range: UISegmentedControl!
             @IBOutlet weak var shopListTable: UITableView!
             
             var shops: Array<Shop> = []
@@ -8,11 +9,20 @@
             override func viewDidLoad() {
                 super.viewDidLoad()
                 // Do any additional setup after loading the view.
-                self.request()
+                self.request(range: 3)
             }
             
-            func request() {
-                let url: URL = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=db3b8db8a1dd923b&lat=34.9875216&lng=135.7593744&range=1&count=100&format=json")!
+            @IBAction func rangeSelect(_ sender: UISegmentedControl) {
+                print(sender.selectedSegmentIndex + 1)
+                let range = sender.selectedSegmentIndex + 1
+                self.request(range: range)
+            }
+            
+            
+            func request(range: Int) {
+                let lat = 34.9875216;
+                let lng = 135.7203744;
+                let url: URL = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=db3b8db8a1dd923b&lat=\(lat)&lng=\(lng)&range=\(range)&count=100&format=json")!
                 let task: URLSessionTask = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                     
                     if let error = error {
@@ -32,6 +42,7 @@
                                let gourmet = try JSONDecoder().decode(Gourmet.self, from: data)
                                let shops = gourmet.results.shop
                                self.shops = shops
+                               print(gourmet.results.results_returned)
                                
                                DispatchQueue.main.async {
                                    self.shopListTable.reloadData()
