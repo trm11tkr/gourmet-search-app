@@ -11,8 +11,7 @@ class ViewController: UIViewController {
     private var apiManager = GetApiManager()
     private var shops : [Shop] = []
     
-    private var nowLatitude: Double = 0.0;
-    private var nowLongitude: Double = 0.0;
+    private var selectedRange: Int = 3
     
     private let locationManager = CLLocationManager()
     
@@ -23,7 +22,7 @@ class ViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        apiManager.onGetResponse(latitude: nowLatitude, longitude: nowLongitude, range: 3)
+        requestLocationAuthorization(status: locationManager.authorizationStatus)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,10 +35,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rangeSelect(_ sender: UISegmentedControl) {
-        let range = sender.selectedSegmentIndex + 1
+        selectedRange = sender.selectedSegmentIndex + 1
         locationManager.requestLocation()
-        resultsCount.text =  "検索結果：\(shops.count)件"
-        apiManager.onGetResponse(latitude: nowLatitude, longitude: nowLongitude, range: range)
     }
 }
 
@@ -48,23 +45,47 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         
-        
-        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) in
-            
-            if let error = error {
-                print("reverseGeocodeLocation Failed: \(error.localizedDescription)")
-                return
-            }
-            
-            
-            self.nowLatitude = location.coordinate.latitude
-            self.nowLongitude = location.coordinate.longitude
-        })
+        apiManager.onGetResponse(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, range: selectedRange)
     }
     
     // 現在地情報が取得できなかった場合
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // アラート処理
     }
+    
+    // 位置情報権限が変更された場合
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        requestLocationAuthorization(status: manager.authorizationStatus)
+    }
+    
+    
+    private func requestLocationAuthorization(status: CLAuthorizationStatus) {
+            switch status {
+            case .notDetermined:
+                print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
+                // 許可を求めるコードを記述する（後述）
+                break
+            case .denied:
+                print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
+                // 「設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい」を表示する
+                break
+            case .restricted:
+                print("このアプリケーションは位置情報サービスを使用できません(ユーザによって拒否されたわけではありません)")
+                // 「このアプリは、位置情報を取得できないために、正常に動作できません」を表示する
+                break
+            case .authorizedAlways:
+                print("常時、位置情報の取得が許可されています。")
+                // 位置情報取得の開始処理
+                break
+            case .authorizedWhenInUse:
+                print("起動時のみ、位置情報の取得が許可されています。")
+                // 位置情報取得の開始処理
+                locationManager.requestLocation()
+                break
+            @unknown default:
+                break
+            }
+        }
 }
 
 extension ViewController: UITableViewDelegate {
