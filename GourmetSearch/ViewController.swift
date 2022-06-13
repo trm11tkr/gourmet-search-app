@@ -5,6 +5,7 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var range: UISegmentedControl!
     @IBOutlet weak var shopListTable: UITableView!
+    @IBOutlet weak var results_count: UILabel!
     
     private var apiManager = GetApiManager()
     private var shops : [Shop] = []
@@ -36,6 +37,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func rangeSelect(_ sender: UISegmentedControl) {
         let range = sender.selectedSegmentIndex + 1
         locationManager.requestLocation()
+        results_count.text =  "検索結果：\(shops.count)件"
         apiManager.onGetResponse(lat: nowLat, lng: nowLng, range: range)
     }
     
@@ -133,11 +135,11 @@ extension ViewController : GetApiManagerDelegate {
         print(error)
     }
     
-    func onGetResponse(_ apiManager: GetApiManager, responseModel:[Shop]) {
+    func onGetResponse(_ apiManager: GetApiManager, responseModel: [Shop], resultsCount: String) {
         shops = responseModel
         DispatchQueue.main.async {
+            self.results_count.text = "検索結果：\(resultsCount)件"
             self.shopListTable.reloadData()
         }
-        
     }
 }
