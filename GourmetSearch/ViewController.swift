@@ -6,20 +6,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var range: UISegmentedControl!
     @IBOutlet weak var shopListTable: UITableView!
     
+    private var apiManager = GetApiManager()
+    private var shops : [Shop] = []
+    
     var nowLat: Double = 0.0;
     var nowLng: Double = 0.0;
-    
-    var shops: Array<Shop> = []
     
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        apiManager.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        self.request(range: 3, lat: nowLat, lng: nowLng)
+        apiManager.onGetResponse(lat: nowLat, lng: nowLng, range: 3)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,14 +36,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func rangeSelect(_ sender: UISegmentedControl) {
         let range = sender.selectedSegmentIndex + 1
         locationManager.requestLocation()
-        self.request(range: range, lat: nowLat, lng: nowLng)
+        apiManager.onGetResponse(lat: nowLat, lng: nowLng, range: range)
     }
     
     
     // 位置情報が取得できた場合
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let loc = locations.last else { return }
-                
+        
         
         CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {(placemarks, error) in
             
@@ -67,47 +69,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         })
     }
-
+    
     // 現在地情報が取得できなかった場合
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    }
-    
-    func request(range: Int, lat: Double, lng: Double) {
-        let url: URL = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=db3b8db8a1dd923b&lat=\(lat)&lng=\(lng)&range=\(range)&count=100&format=json")!
-        print(lat)
-        print(lng)
-        let task: URLSessionTask = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-                print("通信が失敗しました")
-                return
-            }
-            
-            guard let data = data,
-                  let response = response as? HTTPURLResponse else {
-                print("データもしくはレスポンスがnilの状態です")
-                return
-            }
-            
-            if response.statusCode == 200 {
-                do {
-                    let gourmet = try JSONDecoder().decode(Gourmet.self, from: data)
-                    let shops = gourmet.results.shop
-                    self.shops = shops
-                    print(gourmet.results.results_returned)
-                    
-                    DispatchQueue.main.async {
-                        self.shopListTable.reloadData()
-                    }
-                } catch let error {
-                    print(":エラー:\(error)")
-                }
-            } else {
-                print("statusCode:\(response.statusCode)")
-            }
-        })
-        task.resume()
     }
 }
 
@@ -161,5 +125,19 @@ extension UIImage {
             print("Error : \(err.localizedDescription)")
         }
         self.init()
+    }
+}
+
+extension ViewController : GetApiManagerDelegate {
+    func onError(_ error: Error) {
+        print(error)
+    }
+    
+    func onGetResponse(_ apiManager: GetApiManager, responseModel:[Shop]) {
+        shops = responseModel
+        DispatchQueue.main.async {
+            self.shopListTable.reloadData()
+        }
+        
     }
 }

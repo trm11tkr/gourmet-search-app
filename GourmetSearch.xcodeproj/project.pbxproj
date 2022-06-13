@@ -16,6 +16,8 @@
 		7B9AD5E028531ECC003BCE9A /* Gourmet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */; };
 		7B9AD5E328533EC3003BCE9A /* tableware.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9AD5E228533EC3003BCE9A /* tableware.png */; };
 		7B9AD5E528534BA0003BCE9A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */; };
+		7B9AD5EE2856D54B003BCE9A /* GetApiMangagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5ED2856D54B003BCE9A /* GetApiMangagerDelegate.swift */; };
+		7B9AD5F02856D5B1003BCE9A /* GetApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5EF2856D5B1003BCE9A /* GetApiManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gourmet.swift; sourceTree = "<group>"; };
 		7B9AD5E228533EC3003BCE9A /* tableware.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableware.png; sourceTree = "<group>"; };
 		7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		7B9AD5ED2856D54B003BCE9A /* GetApiMangagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiMangagerDelegate.swift; sourceTree = "<group>"; };
+		7B9AD5EF2856D5B1003BCE9A /* GetApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 		7B0952EC2852EEAA00A343BA /* GourmetSearch */ = {
 			isa = PBXGroup;
 			children = (
+				7B9AD5EC2856D4E8003BCE9A /* Delegates */,
+				7B9AD5E92856D32F003BCE9A /* ApiManager */,
 				7B9AD5E128533DBA003BCE9A /* images */,
 				7B9AD5DE28531EAA003BCE9A /* Models */,
 				7B0952ED2852EEAA00A343BA /* AppDelegate.swift */,
@@ -90,6 +96,22 @@
 				7B9AD5E228533EC3003BCE9A /* tableware.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		7B9AD5E92856D32F003BCE9A /* ApiManager */ = {
+			isa = PBXGroup;
+			children = (
+				7B9AD5EF2856D5B1003BCE9A /* GetApiManager.swift */,
+			);
+			path = ApiManager;
+			sourceTree = "<group>";
+		};
+		7B9AD5EC2856D4E8003BCE9A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				7B9AD5ED2856D54B003BCE9A /* GetApiMangagerDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +186,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B9AD5F02856D5B1003BCE9A /* GetApiManager.swift in Sources */,
+				7B9AD5EE2856D54B003BCE9A /* GetApiMangagerDelegate.swift in Sources */,
 				7B0952F22852EEAA00A343BA /* ViewController.swift in Sources */,
 				7B0952EE2852EEAA00A343BA /* AppDelegate.swift in Sources */,
 				7B0952F02852EEAA00A343BA /* SceneDelegate.swift in Sources */,
