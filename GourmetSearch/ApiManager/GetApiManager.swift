@@ -29,8 +29,7 @@ class GetApiManager {
             }
             
             do {
-                let decoder = JSONDecoder()
-                let ResponseModel =  try decoder.decode(Gourmet.self, from: data)
+                let ResponseModel =  try JSONDecoder().decode(Gourmet.self, from: data)
                 let shops = ResponseModel.results.shop
                 delegate?.onGetResponse(self, responseModel: shops, resultsCount: ResponseModel.results.resultsReturned)
             }
