@@ -13,9 +13,11 @@ class GetApiManager {
     
     var delegate: GetApiManagerDelegate?
     func onGetResponse(lat: Double, lng: Double ,range: Int) {
-        let url = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=\(key)&lat=\(lat)&lng=\(lng)&range=\(range)&count=100&format=json")
+        guard let url = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=\(key)&lat=\(lat)&lng=\(lng)&range=\(range)&count=100&format=json") else {
+            return
+        }
         
-        let task: URLSessionTask = URLSession.shared.dataTask(with: url!, completionHandler: { [self](data, response, error) in
+        let task: URLSessionTask = URLSession.shared.dataTask(with: url, completionHandler: { [self](data, response, error) in
             
             guard let data = data,
                   let response = response as? HTTPURLResponse, error == nil
