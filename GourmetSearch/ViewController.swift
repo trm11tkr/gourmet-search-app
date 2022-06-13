@@ -2,7 +2,7 @@ import UIKit
 import CoreLocation
 
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController {
     @IBOutlet weak var range: UISegmentedControl!
     @IBOutlet weak var shopListTable: UITableView!
     @IBOutlet weak var resultsCount: UILabel!
@@ -41,8 +41,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         resultsCount.text =  "検索結果：\(shops.count)件"
         apiManager.onGetResponse(lat: nowLat, lng: nowLng, range: range)
     }
-    
-    
+}
+
+extension ViewController: CLLocationManagerDelegate {
     // 位置情報が取得できた場合
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let loc = locations.last else { return }
@@ -55,9 +56,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 return
             }
             
-                
-                self.nowLat = loc.coordinate.latitude
-                self.nowLng = loc.coordinate.longitude
+            
+            self.nowLat = loc.coordinate.latitude
+            self.nowLng = loc.coordinate.longitude
         })
     }
     
