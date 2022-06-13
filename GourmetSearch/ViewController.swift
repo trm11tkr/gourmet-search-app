@@ -11,10 +11,10 @@ class ViewController: UIViewController {
     private var apiManager = GetApiManager()
     private var shops : [Shop] = []
     
-    var nowLat: Double = 0.0;
-    var nowLng: Double = 0.0;
+    private var nowLat: Double = 0.0;
+    private var nowLng: Double = 0.0;
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +106,7 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension UIImage {
-    public convenience init(url: String) {
+    convenience init(url: String) {
         if (url == "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif") {
             self.init(named: "tableware")!
             return
