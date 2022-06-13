@@ -54,21 +54,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 return
             }
             
-            if let placemark = placemarks?[0] {
-                
-                var locInfo = ""
-                locInfo = locInfo + "Latitude: \(loc.coordinate.latitude)\n"
-                locInfo = locInfo + "Longitude: \(loc.coordinate.longitude)\n\n"
-                
-                locInfo = locInfo + "Country: \(placemark.country ?? "")\n"
-                locInfo = locInfo + "State/Province: \(placemark.administrativeArea ?? "")\n"
-                locInfo = locInfo + "City: \(placemark.locality ?? "")\n"
-                locInfo = locInfo + "PostalCode: \(placemark.postalCode ?? "")\n"
-                locInfo = locInfo + "Name: \(placemark.name ?? "")"
                 
                 self.nowLat = loc.coordinate.latitude
                 self.nowLng = loc.coordinate.longitude
-            }
         })
     }
     
@@ -95,9 +83,12 @@ extension ViewController: UITableViewDataSource {
         
         let accessLabel = cell.viewWithTag(3) as! UILabel
         
+        let genre = cell.viewWithTag(4) as! UILabel
+        
         let imageView = cell.contentView.viewWithTag(1) as! UIImageView
         nameLabel.text = shop.name
         accessLabel.text = shop.access
+        genre.text = shop.genre.name
         imageView.image = UIImage(url: shop.logo_image)
         
         return cell
