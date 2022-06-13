@@ -34,7 +34,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Osv-5M-9BC">
-                                <rect key="frame" x="0.0" y="233" width="390" height="611"/>
+                                <rect key="frame" x="0.0" y="234" width="390" height="610"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="122" id="88Y-AG-PMP">
@@ -122,11 +122,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="results_count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbb-vi-TiM">
-                                <rect key="frame" x="10" y="208" width="370" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="7iR-fa-PxQ"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="resultsCoount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csw-VD-SO5">
+                                <rect key="frame" x="10" y="208" width="370" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -135,17 +132,17 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mbb-vi-TiM" secondAttribute="trailing" constant="10" id="AtB-09-nfp"/>
+                            <constraint firstItem="csw-VD-SO5" firstAttribute="top" secondItem="kjK-2K-TID" secondAttribute="bottom" constant="36" id="Bti-1F-gqH"/>
                             <constraint firstAttribute="bottom" secondItem="Osv-5M-9BC" secondAttribute="bottom" id="FRM-Hj-tzV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="csw-VD-SO5" secondAttribute="trailing" constant="10" id="M3E-0s-SeI"/>
                             <constraint firstItem="Osv-5M-9BC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Mlx-cr-SEy"/>
-                            <constraint firstItem="Mbb-vi-TiM" firstAttribute="top" secondItem="kjK-2K-TID" secondAttribute="bottom" constant="36" id="UKm-qf-mvm"/>
                             <constraint firstItem="Osv-5M-9BC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UPp-iv-uwK"/>
+                            <constraint firstItem="Osv-5M-9BC" firstAttribute="top" secondItem="csw-VD-SO5" secondAttribute="bottom" constant="5" id="ZPy-Zb-fIy"/>
                             <constraint firstItem="kjK-2K-TID" firstAttribute="top" secondItem="QOp-G9-TPg" secondAttribute="bottom" constant="5" id="df3-8g-GQe"/>
                             <constraint firstItem="QOp-G9-TPg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="dgd-N3-HRH"/>
                             <constraint firstItem="kjK-2K-TID" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="gtl-yd-uqF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QOp-G9-TPg" secondAttribute="trailing" constant="50" id="jNF-Fw-myX"/>
-                            <constraint firstItem="Mbb-vi-TiM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="mN0-CW-4aU"/>
-                            <constraint firstItem="Osv-5M-9BC" firstAttribute="top" secondItem="Mbb-vi-TiM" secondAttribute="bottom" constant="5" id="tK8-c6-qb1"/>
+                            <constraint firstItem="csw-VD-SO5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="koc-Y2-YrL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kjK-2K-TID" secondAttribute="trailing" constant="50" id="uHw-6C-JRN"/>
                             <constraint firstItem="QOp-G9-TPg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="xvf-KS-RXn"/>
                         </constraints>
@@ -153,7 +150,7 @@
                     <navigationItem key="navigationItem" title="Gourmet Search" id="NJY-an-Fzi"/>
                     <connections>
                         <outlet property="range" destination="kjK-2K-TID" id="MyG-OB-JHw"/>
-                        <outlet property="results_count" destination="Mbb-vi-TiM" id="6BO-gP-kOe"/>
+                        <outlet property="resultsCount" destination="csw-VD-SO5" id="qrl-o4-dze"/>
                         <outlet property="shopListTable" destination="Osv-5M-9BC" id="THF-d4-7CN"/>
                         <segue destination="D8B-N4-7Ad" kind="show" identifier="ToShopDetailViewController" id="Ndg-b0-Hcu"/>
                     </connections>
