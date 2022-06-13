@@ -40,6 +40,8 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - Location
+
 extension ViewController: CLLocationManagerDelegate {
     // 位置情報が取得できた場合
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -88,8 +90,7 @@ extension ViewController: CLLocationManagerDelegate {
         }
 }
 
-extension ViewController: UITableViewDelegate {
-}
+// MARK: - TableView
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -143,6 +144,9 @@ extension UIImage {
         self.init()
     }
 }
+
+
+// MARK: - GetApiManager
 
 extension ViewController : GetApiManagerDelegate {
     func onError(_ error: Error) {
