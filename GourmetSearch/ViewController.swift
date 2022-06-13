@@ -11,8 +11,8 @@ class ViewController: UIViewController {
     private var apiManager = GetApiManager()
     private var shops : [Shop] = []
     
-    private var nowLat: Double = 0.0;
-    private var nowLng: Double = 0.0;
+    private var nowLatitude: Double = 0.0;
+    private var nowLongitude: Double = 0.0;
     
     private let locationManager = CLLocationManager()
     
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-        apiManager.onGetResponse(lat: nowLat, lng: nowLng, range: 3)
+        apiManager.onGetResponse(latitude: nowLatitude, longitude: nowLongitude, range: 3)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,17 +39,17 @@ class ViewController: UIViewController {
         let range = sender.selectedSegmentIndex + 1
         locationManager.requestLocation()
         resultsCount.text =  "検索結果：\(shops.count)件"
-        apiManager.onGetResponse(lat: nowLat, lng: nowLng, range: range)
+        apiManager.onGetResponse(latitude: nowLatitude, longitude: nowLongitude, range: range)
     }
 }
 
 extension ViewController: CLLocationManagerDelegate {
     // 位置情報が取得できた場合
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let loc = locations.last else { return }
+        guard let location = locations.last else { return }
         
         
-        CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {(placemarks, error) in
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) in
             
             if let error = error {
                 print("reverseGeocodeLocation Failed: \(error.localizedDescription)")
@@ -57,8 +57,8 @@ extension ViewController: CLLocationManagerDelegate {
             }
             
             
-            self.nowLat = loc.coordinate.latitude
-            self.nowLng = loc.coordinate.longitude
+            self.nowLatitude = location.coordinate.latitude
+            self.nowLongitude = location.coordinate.longitude
         })
     }
     
