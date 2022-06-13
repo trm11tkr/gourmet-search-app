@@ -8,9 +8,12 @@
 import Foundation
 
 class GetApiManager {
+    // ソースコードに置くべきではないが、今回は実装の優先度から判断して、直接置くことにする
+    private let key = "db3b8db8a1dd923b"
+    
     var delegate: GetApiManagerDelegate?
     func onGetResponse(lat: Double, lng: Double ,range: Int) {
-        let url = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=db3b8db8a1dd923b&lat=\(lat)&lng=\(lng)&range=\(range)&count=100&format=json")
+        let url = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=\(key)&lat=\(lat)&lng=\(lng)&range=\(range)&count=100&format=json")
         
         let task: URLSessionTask = URLSession.shared.dataTask(with: url!, completionHandler: { [self](data, response, error) in
             
