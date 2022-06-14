@@ -5,14 +5,20 @@ import CoreLocation
 class ViewController: UIViewController {
     @IBOutlet weak var range: UISegmentedControl!
     @IBOutlet weak var shopListTable: UITableView!
+    
+    // 検索結果の数
     @IBOutlet weak var resultsCount: UILabel!
+    
+    // 検索結果が0件だった際に表示するラベル
     @IBOutlet weak var nothingLabel: UILabel!
     
     private var apiManager = GetApiManager()
     private var shops: [Shop] = []
     
+    // 検索範囲（初期値はクエリのデフォルト値である1kmに設定）
     private var selectedRange: Int = 3
     
+    // 位置情報を扱う「Core Location」サービスを使用するためのインスタンス
     private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -26,11 +32,13 @@ class ViewController: UIViewController {
         requestLocationAuthorization(status: locationManager.authorizationStatus)
     }
     
+    // ShopListTableのセットアップ
     private func setupTableView() {
         shopListTable.dataSource = self
         shopListTable.register(ShopListTableViewCell.nib(), forCellReuseIdentifier: ShopListTableViewCell.reuseIdentifier)
     }
     
+    // TableViewCellタップ時の遷移処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToShopDetailViewController" {
             if let nextVC = segue.destination as? ShopDetailViewController {
@@ -39,7 +47,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+    // 検索範囲の選択
     @IBAction func rangeSelect(_ sender: UISegmentedControl) {
         selectedRange = sender.selectedSegmentIndex + 1
         requestLocationAuthorization(status: locationManager.authorizationStatus)
@@ -90,7 +98,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     
-    
+    // 位置情報ステータスに基づいた処理
     private func requestLocationAuthorization(status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
@@ -152,6 +160,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// ロゴイメージが未設定用の画像の場合に、適した画像に置換
 extension UIImage {
     convenience init(url: String) {
         if (url == "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif") {
@@ -181,6 +190,7 @@ extension ViewController : GetApiManagerDelegate {
     func onGetResponse(_ apiManager: GetApiManager, responseModel: [Shop], resultsCount: String) {
         shops = responseModel
         DispatchQueue.main.async {
+            // 検索結果が0件の場合に表示
             if(self.shops.count == 0) {
                 self.nothingLabel.isHidden = false
             } else {

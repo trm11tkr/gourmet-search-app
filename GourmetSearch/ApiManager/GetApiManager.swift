@@ -12,6 +12,8 @@ class GetApiManager {
     private let key = "db3b8db8a1dd923b"
     
     var delegate: GetApiManagerDelegate?
+    
+    // API通信
     func onGetResponse(latitude: Double, longitude: Double ,range: Int) {
         guard let url = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=\(key)&lat=\(latitude)&lng=\(longitude)&range=\(range)&count=100&format=json") else {
             return
