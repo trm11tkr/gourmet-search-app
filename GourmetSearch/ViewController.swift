@@ -17,12 +17,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
         apiManager.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         requestLocationAuthorization(status: locationManager.authorizationStatus)
+    }
+    
+    private func setupTableView() {
+            shopListTable.dataSource = self
+            shopListTable.register(ShopListTableViewCell.nib(), forCellReuseIdentifier: ShopListTableViewCell.reuseIdentifier)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -123,23 +129,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        shopListTable.rowHeight = 120
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ShopListTableViewCell", for: indexPath) as! ShopListTableViewCell
         
         let shop = shops[indexPath.row]
-        
-        let nameLabel = cell.viewWithTag(2) as! UILabel
-        
-        let accessLabel = cell.viewWithTag(3) as! UILabel
-        
-        let genre = cell.viewWithTag(4) as! UILabel
-        
-        let imageView = cell.contentView.viewWithTag(1) as! UIImageView
-        nameLabel.text = shop.name
-        accessLabel.text = shop.access
-        genre.text = shop.genre.name
-        imageView.image = UIImage(url: shop.logoImage)
-        
+        cell.shopNameLabel.text = shop.name
+        cell.accessLabel.text = shop.access
+        cell.genreLabel.text = shop.genre.name
+        cell.logoImageView.image = UIImage(url: shop.logoImage)
         return cell
     }
     
@@ -149,6 +145,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         performSegue(withIdentifier: "ToShopDetailViewController", sender: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
     }
 }
 
