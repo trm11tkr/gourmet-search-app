@@ -6,7 +6,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var range: UISegmentedControl!
     @IBOutlet weak var shopListTable: UITableView!
     @IBOutlet weak var resultsCount: UILabel!
-    
+    @IBOutlet weak var nothingLabel: UILabel!
     
     private var apiManager = GetApiManager()
     private var shops : [Shop] = []
@@ -181,6 +181,11 @@ extension ViewController : GetApiManagerDelegate {
     func onGetResponse(_ apiManager: GetApiManager, responseModel: [Shop], resultsCount: String) {
         shops = responseModel
         DispatchQueue.main.async {
+            if(self.shops.count == 0) {
+                self.nothingLabel.isHidden = false
+            } else {
+                self.nothingLabel.isHidden = true
+            }
             self.resultsCount.text = "検索結果：\(resultsCount)件"
             self.shopListTable.reloadData()
         }
