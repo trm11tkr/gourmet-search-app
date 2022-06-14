@@ -27,8 +27,6 @@ class ViewController: UIViewController {
         apiManager.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
         requestLocationAuthorization(status: locationManager.authorizationStatus)
     }
     
@@ -103,6 +101,9 @@ extension ViewController: CLLocationManagerDelegate {
         switch status {
         case .notDetermined:
             print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
+            
+            locationManager.requestWhenInUseAuthorization()
+//            alertLocationPermission(true)
             break
         case .denied:
             print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
