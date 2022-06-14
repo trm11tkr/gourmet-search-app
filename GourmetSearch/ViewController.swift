@@ -1,120 +1,188 @@
-        import UIKit
+import UIKit
+import CoreLocation
 
-        class ViewController: UIViewController {
-            @IBOutlet weak var range: UISegmentedControl!
-            @IBOutlet weak var shopListTable: UITableView!
-            
-            var shops: Array<Shop> = []
-            
-            override func viewDidLoad() {
-                super.viewDidLoad()
-                // Do any additional setup after loading the view.
-                self.request(range: 3)
-            }
-            
-            override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                if segue.identifier == "ToShopDetailViewController" {
-                    if let nextVC = segue.destination as? ShopDetailViewController {
-                        let index = sender as! Int
-                        nextVC.shop = shops[index]
-                    }
-                }
-            }
-            
-            @IBAction func rangeSelect(_ sender: UISegmentedControl) {
-                let range = sender.selectedSegmentIndex + 1
-                self.request(range: range)
-            }
-            
-            
-            func request(range: Int) {
-                let lat = 34.9875216;
-                let lng = 135.7203744;
-                let url: URL = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=db3b8db8a1dd923b&lat=\(lat)&lng=\(lng)&range=\(range)&count=100&format=json")!
-                let task: URLSessionTask = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
-                    
-                    if let error = error {
-                           print(error.localizedDescription)
-                           print("通信が失敗しました")
-                           return
-                       }
-                    
-                    guard let data = data,
-                             let response = response as? HTTPURLResponse else {
-                           print("データもしくはレスポンスがnilの状態です")
-                           return
-                       }
-                    
-                    if response.statusCode == 200 {
-                           do {
-                               let gourmet = try JSONDecoder().decode(Gourmet.self, from: data)
-                               let shops = gourmet.results.shop
-                               self.shops = shops
-                               print(gourmet.results.results_returned)
-                               
-                               DispatchQueue.main.async {
-                                   self.shopListTable.reloadData()
-                                       }
-                           } catch let error {
-                               print(":エラー:\(error)")
-                           }
-                       } else {
-                           print("statusCode:\(response.statusCode)")
-                       }
-                })
-                task.resume()
-            }
-        }
 
-        extension ViewController: UITableViewDelegate {
-        }
-
-        extension ViewController: UITableViewDataSource {
-            func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return shops.count
+class ViewController: UIViewController {
+    @IBOutlet weak var range: UISegmentedControl!
+    @IBOutlet weak var shopListTable: UITableView!
+    @IBOutlet weak var resultsCount: UILabel!
+    
+    
+    private var apiManager = GetApiManager()
+    private var shops : [Shop] = []
+    
+    private var selectedRange: Int = 3
+    
+    private let locationManager = CLLocationManager()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        apiManager.delegate = self
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+        requestLocationAuthorization(status: locationManager.authorizationStatus)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ToShopDetailViewController" {
+            if let nextVC = segue.destination as? ShopDetailViewController {
+                let index = sender as! Int
+                nextVC.shop = shops[index]
             }
-            
-            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-                shopListTable.rowHeight = 120
-                
-                let shop = shops[indexPath.row]
-                
-                let nameLabel = cell.viewWithTag(2) as! UILabel
-                
-                let accessLabel = cell.viewWithTag(3) as! UILabel
-                
-                let imageView = cell.contentView.viewWithTag(1) as! UIImageView
-                nameLabel.text = shop.name
-                accessLabel.text = shop.access
-                imageView.image = UIImage(url: shop.logo_image)
-            
-                return cell
-            }
-            
-            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                print(shops[indexPath.row].name)
-                
-                tableView.deselectRow(at: indexPath, animated: true)
-                
-                performSegue(withIdentifier: "ToShopDetailViewController", sender: indexPath.row)
-            }
-        }
-
-    extension UIImage {
-        public convenience init(url: String) {
-            if (url == "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif") {
-                self.init(named: "tableware")!
-                return
-            }
-            let url = URL(string: url)
-            do {
-                let data = try Data(contentsOf: url!)
-                self.init(data: data)!
-                return
-            } catch let err {
-                print("Error : \(err.localizedDescription)")
-            }
-            self.init()
         }
     }
+    
+    @IBAction func rangeSelect(_ sender: UISegmentedControl) {
+        selectedRange = sender.selectedSegmentIndex + 1
+        requestLocationAuthorization(status: locationManager.authorizationStatus)
+    }
+}
+
+// MARK: - Location
+
+extension ViewController: CLLocationManagerDelegate {
+    // 位置情報が取得できた場合
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        apiManager.onGetResponse(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, range: selectedRange)
+    }
+    
+    // 現在地情報が取得できなかった場合
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        // アラート処理
+    }
+    
+    // 位置情報権限が変更された場合
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        requestLocationAuthorization(status: manager.authorizationStatus)
+    }
+    
+    // 位置情報利用許可の催促アラート
+    private func alertLocationPermission(_ animated: Bool) {
+       let alertController = UIAlertController (title: "位置情報の使用を許可してください", message: "アプリをご利用いただくために必要です", preferredStyle: .alert)
+
+       let settingsAction = UIAlertAction(title: "設定", style: .default) { (_) -> Void in
+
+           guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+               return
+           }
+
+           if UIApplication.shared.canOpenURL(settingsUrl) {
+               UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                   print("Settings opened: \(success)") // Prints true
+               })
+           }
+       }
+       alertController.addAction(settingsAction)
+       let cancelAction = UIAlertAction(title: "キャンセル", style: .default, handler: nil)
+       alertController.addAction(cancelAction)
+
+       present(alertController, animated: true, completion: nil)
+   }
+    
+    
+    
+    private func requestLocationAuthorization(status: CLAuthorizationStatus) {
+            switch status {
+            case .notDetermined:
+                print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
+                break
+            case .denied:
+                print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
+                // 「設定 > プライバシー > 位置情報サービス で、位置情報サービスの利用を許可して下さい」を表示する
+                alertLocationPermission(true)
+                break
+            case .restricted:
+                print("このアプリケーションは位置情報サービスを使用できません(ユーザによって拒否されたわけではありません)")
+                // 「このアプリは、位置情報を取得できないために、正常に動作できません」を表示する
+                break
+            case .authorizedAlways:
+                print("常時、位置情報の取得が許可されています。")
+                // 位置情報取得の開始処理
+                locationManager.requestLocation()
+                break
+            case .authorizedWhenInUse:
+                print("起動時のみ、位置情報の取得が許可されています。")
+                // 位置情報取得の開始処理
+                locationManager.requestLocation()
+                break
+            @unknown default:
+                break
+            }
+        }
+}
+
+// MARK: - TableView
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return shops.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        shopListTable.rowHeight = 120
+        
+        let shop = shops[indexPath.row]
+        
+        let nameLabel = cell.viewWithTag(2) as! UILabel
+        
+        let accessLabel = cell.viewWithTag(3) as! UILabel
+        
+        let genre = cell.viewWithTag(4) as! UILabel
+        
+        let imageView = cell.contentView.viewWithTag(1) as! UIImageView
+        nameLabel.text = shop.name
+        accessLabel.text = shop.access
+        genre.text = shop.genre.name
+        imageView.image = UIImage(url: shop.logoImage)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(shops[indexPath.row].name)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "ToShopDetailViewController", sender: indexPath.row)
+    }
+}
+
+extension UIImage {
+    convenience init(url: String) {
+        if (url == "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif") {
+            self.init(named: "tableware")!
+            return
+        }
+        let url = URL(string: url)
+        do {
+            let data = try Data(contentsOf: url!)
+            self.init(data: data)!
+            return
+        } catch let err {
+            print("Error : \(err.localizedDescription)")
+        }
+        self.init()
+    }
+}
+
+
+// MARK: - GetApiManager
+
+extension ViewController : GetApiManagerDelegate {
+    func onError(_ error: Error) {
+        print(error)
+    }
+    
+    func onGetResponse(_ apiManager: GetApiManager, responseModel: [Shop], resultsCount: String) {
+        shops = responseModel
+        DispatchQueue.main.async {
+            self.resultsCount.text = "検索結果：\(resultsCount)件"
+            self.shopListTable.reloadData()
+        }
+    }
+}

@@ -6,8 +6,12 @@ struct Gourmet: Decodable {
 }
 
 struct Shops: Decodable {
-    let results_returned: String
+    let resultsReturned: String
     let shop: Array<Shop>
+    private enum CodingKeys: String, CodingKey {
+        case resultsReturned = "results_returned"
+        case shop
+    }
 }
 
 struct Shop:Decodable {
@@ -15,9 +19,18 @@ struct Shop:Decodable {
     let access: String
     let address: String
     let open: String
-    let logo_image: String
+    let logoImage: String
     let photo: Photo
     let genre: Genre
+    private enum CodingKeys: String, CodingKey {
+        case name
+        case access
+        case address
+        case open
+        case logoImage = "logo_image"
+        case photo
+        case genre
+    }
 }
 
 struct Genre: Decodable {
