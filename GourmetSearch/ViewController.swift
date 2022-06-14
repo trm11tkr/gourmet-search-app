@@ -5,26 +5,38 @@ import CoreLocation
 class ViewController: UIViewController {
     @IBOutlet weak var range: UISegmentedControl!
     @IBOutlet weak var shopListTable: UITableView!
+    
+    // 検索結果の数
     @IBOutlet weak var resultsCount: UILabel!
+    
+    // 検索結果が0件だった際に表示するラベル
     @IBOutlet weak var nothingLabel: UILabel!
     
     private var apiManager = GetApiManager()
     private var shops: [Shop] = []
     
+    // 検索範囲（初期値はクエリのデフォルト値である1kmに設定）
     private var selectedRange: Int = 3
     
+    // 位置情報を扱う「Core Location」サービスを使用するためのインスタンス
     private let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
         apiManager.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
         requestLocationAuthorization(status: locationManager.authorizationStatus)
     }
     
+    // ShopListTableのセットアップ
+    private func setupTableView() {
+        shopListTable.dataSource = self
+        shopListTable.register(ShopListTableViewCell.nib(), forCellReuseIdentifier: ShopListTableViewCell.reuseIdentifier)
+    }
+    
+    // TableViewCellタップ時の遷移処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToShopDetailViewController" {
             if let nextVC = segue.destination as? ShopDetailViewController {
@@ -33,7 +45,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+    // 検索範囲の選択
     @IBAction func rangeSelect(_ sender: UISegmentedControl) {
         selectedRange = sender.selectedSegmentIndex + 1
         requestLocationAuthorization(status: locationManager.authorizationStatus)
@@ -84,11 +96,14 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     
-    
+    // 位置情報ステータスに基づいた処理
     private func requestLocationAuthorization(status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
             print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
+            
+            locationManager.requestWhenInUseAuthorization()
+//            alertLocationPermission(true)
             break
         case .denied:
             print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
@@ -123,23 +138,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        shopListTable.rowHeight = 120
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ShopListTableViewCell", for: indexPath) as! ShopListTableViewCell
         
         let shop = shops[indexPath.row]
-        
-        let nameLabel = cell.viewWithTag(2) as! UILabel
-        
-        let accessLabel = cell.viewWithTag(3) as! UILabel
-        
-        let genre = cell.viewWithTag(4) as! UILabel
-        
-        let imageView = cell.contentView.viewWithTag(1) as! UIImageView
-        nameLabel.text = shop.name
-        accessLabel.text = shop.access
-        genre.text = shop.genre.name
-        imageView.image = UIImage(url: shop.logoImage)
-        
+        cell.shopNameLabel.text = shop.name
+        cell.accessLabel.text = shop.access
+        cell.genreLabel.text = shop.genre.name
+        cell.logoImageView.image = UIImage(url: shop.logoImage)
         return cell
     }
     
@@ -150,8 +155,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         performSegue(withIdentifier: "ToShopDetailViewController", sender: indexPath.row)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
 }
 
+// ロゴイメージが未設定用の画像の場合に、適した画像に置換
 extension UIImage {
     convenience init(url: String) {
         if (url == "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif") {
@@ -181,6 +191,7 @@ extension ViewController : GetApiManagerDelegate {
     func onGetResponse(_ apiManager: GetApiManager, responseModel: [Shop], resultsCount: String) {
         shops = responseModel
         DispatchQueue.main.async {
+            // 検索結果が0件の場合に表示
             if(self.shops.count == 0) {
                 self.nothingLabel.isHidden = false
             } else {
