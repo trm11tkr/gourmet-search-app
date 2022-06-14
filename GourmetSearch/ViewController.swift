@@ -27,8 +27,8 @@ class ViewController: UIViewController {
     }
     
     private func setupTableView() {
-            shopListTable.dataSource = self
-            shopListTable.register(ShopListTableViewCell.nib(), forCellReuseIdentifier: ShopListTableViewCell.reuseIdentifier)
+        shopListTable.dataSource = self
+        shopListTable.register(ShopListTableViewCell.nib(), forCellReuseIdentifier: ShopListTableViewCell.reuseIdentifier)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
