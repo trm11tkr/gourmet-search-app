@@ -28,13 +28,13 @@
                                     <segment title="2km"/>
                                     <segment title="3km"/>
                                 </segments>
-                                <color key="selectedSegmentTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="selectedSegmentTintColor" red="1" green="0.67843137254901964" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="rangeSelect:" destination="BYZ-38-t0r" eventType="valueChanged" id="kQR-GG-fTZ"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Osv-5M-9BC">
-                                <rect key="frame" x="0.0" y="234" width="390" height="610"/>
+                                <rect key="frame" x="0.0" y="213" width="390" height="631"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="122" id="88Y-AG-PMP">
@@ -122,9 +122,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="resultsCoount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csw-VD-SO5">
-                                <rect key="frame" x="10" y="208" width="370" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csw-VD-SO5">
+                                <rect key="frame" x="10" y="208" width="370" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="お店が見つかりませんでした" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sm8-za-VGs">
+                                <rect key="frame" x="69" y="410.66666666666669" width="252" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -135,8 +141,10 @@
                             <constraint firstItem="csw-VD-SO5" firstAttribute="top" secondItem="kjK-2K-TID" secondAttribute="bottom" constant="36" id="Bti-1F-gqH"/>
                             <constraint firstAttribute="bottom" secondItem="Osv-5M-9BC" secondAttribute="bottom" id="FRM-Hj-tzV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="csw-VD-SO5" secondAttribute="trailing" constant="10" id="M3E-0s-SeI"/>
+                            <constraint firstItem="sm8-za-VGs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MkS-eM-BrV"/>
                             <constraint firstItem="Osv-5M-9BC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Mlx-cr-SEy"/>
                             <constraint firstItem="Osv-5M-9BC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UPp-iv-uwK"/>
+                            <constraint firstItem="sm8-za-VGs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WKb-gD-GVY"/>
                             <constraint firstItem="Osv-5M-9BC" firstAttribute="top" secondItem="csw-VD-SO5" secondAttribute="bottom" constant="5" id="ZPy-Zb-fIy"/>
                             <constraint firstItem="kjK-2K-TID" firstAttribute="top" secondItem="QOp-G9-TPg" secondAttribute="bottom" constant="5" id="df3-8g-GQe"/>
                             <constraint firstItem="QOp-G9-TPg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="dgd-N3-HRH"/>
@@ -149,6 +157,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Gourmet Search" id="NJY-an-Fzi"/>
                     <connections>
+                        <outlet property="nothingLabel" destination="sm8-za-VGs" id="yux-Wp-Aif"/>
                         <outlet property="range" destination="kjK-2K-TID" id="MyG-OB-JHw"/>
                         <outlet property="resultsCount" destination="csw-VD-SO5" id="qrl-o4-dze"/>
                         <outlet property="shopListTable" destination="Osv-5M-9BC" id="THF-d4-7CN"/>

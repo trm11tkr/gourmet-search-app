@@ -24,7 +24,5 @@ class ShopDetailViewController: UIViewController {
         open.text = shop.open
         catchPhrase.text = shop.genre.`catch`
         shopImage.image = UIImage(url: shop.photo.mobile.mobileImage)
-
-        // Do any additional setup after loading the view.
     }
 }
