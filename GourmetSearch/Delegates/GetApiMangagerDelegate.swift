@@ -7,6 +7,6 @@
 
 import Foundation
 protocol GetApiManagerDelegate {
-    func onGetResponse(_ apiManager: GetApiManager, responseModel:[Shop], resultsCount: String)
+    func onGetResponse(_ apiManager: GetApiManager, responseModel: [Shop], resultsCount: String)
     func onError(_ error: Error)
 }
