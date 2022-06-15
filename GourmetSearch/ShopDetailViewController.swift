@@ -13,16 +13,18 @@ class ShopDetailViewController: UIViewController {
     
     @IBOutlet weak var shopImage: UIImageView!
     
-    var shop: Shop!
+    var shop: Shop?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        shopTitle.title = shop.name
-        shopName.text = shop.name
-        access.text = shop.access
-        address.text = shop.address
-        open.text = shop.open
-        catchPhrase.text = shop.genre.`catch`
-        shopImage.image = UIImage(url: shop.photo.mobile.mobileImage)
+        shopTitle.title = shop?.name
+        shopName.text = shop?.name
+        access.text = shop?.access
+        address.text = shop?.address
+        open.text = shop?.open
+        catchPhrase.text = shop?.genre.`catch`
+        if let url = shop?.photo.mobile.mobileImage {
+            shopImage.image = UIImage(url: url)
+        }
     }
 }
