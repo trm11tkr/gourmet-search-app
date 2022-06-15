@@ -11,14 +11,29 @@ import MapKit
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
-    private var shopLatitude: Double = 0.0
-    private var shopLongitude: Double = 0.0
+    var shopLatitude: Double?
+    var shopLongitude: Double?
+    var shopName: String?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let shopLatitude = shopLatitude,
+              let shopLongitude = shopLongitude,
+              let shopName = shopName
+        else {
+            return
+        }
         let shopLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
+        setupMapKit(shopLocation: shopLocation, shopName: shopName)
+    }
+    
+    private func setupMapKit (shopLocation: CLLocationCoordinate2D, shopName: String) {
         let currentLocation = MKCoordinateRegion(center: shopLocation, latitudinalMeters: 500, longitudinalMeters: 500)
         mapView.setRegion(currentLocation, animated: true)
+        let pin = MKPointAnnotation()
+        pin.title = shopName
+        pin.coordinate = shopLocation
+        mapView.addAnnotation(pin)
     }
 }
