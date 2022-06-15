@@ -10,14 +10,17 @@ import MapKit
 
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var addressLabel: UILabel!
     
     var shopLatitude: Double?
     var shopLongitude: Double?
     var shopName: String?
+    var shopAddress: String?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addressLabel.text = shopAddress
         guard let shopLatitude = shopLatitude,
               let shopLongitude = shopLongitude,
               let shopName = shopName

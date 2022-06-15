@@ -195,22 +195,11 @@
                                     <action selector="mapButton:" destination="D8B-N4-7Ad" eventType="touchUpInside" id="di6-cS-zDC"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地図" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQA-VU-Mpg">
-                                <rect key="frame" x="330" y="388" width="50" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="eWq-W4-vdv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OGq-pS-AvN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fbe-y3-l6a" firstAttribute="leading" secondItem="OGq-pS-AvN" secondAttribute="leading" constant="10" id="0KY-J8-xlS"/>
-                            <constraint firstItem="OGq-pS-AvN" firstAttribute="trailing" secondItem="RQA-VU-Mpg" secondAttribute="trailing" constant="10" id="34N-Fn-eQg"/>
-                            <constraint firstItem="RQA-VU-Mpg" firstAttribute="top" secondItem="Es7-Ip-d3Y" secondAttribute="bottom" constant="5" id="37V-cq-tfc"/>
                             <constraint firstItem="Es7-Ip-d3Y" firstAttribute="leading" secondItem="J7c-Kr-ABb" secondAttribute="trailing" constant="5" id="6vH-f5-wAk"/>
                             <constraint firstItem="vOh-77-oFV" firstAttribute="top" secondItem="Nat-Ca-vqt" secondAttribute="bottom" constant="10" id="70f-DB-L9A"/>
                             <constraint firstItem="waW-eG-MBW" firstAttribute="leading" secondItem="OGq-pS-AvN" secondAttribute="leading" id="9va-u5-314"/>
@@ -265,26 +254,49 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Xt-YA-OYV">
-                                <rect key="frame" x="0.0" y="88" width="390" height="722"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="572"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kf0-0C-qtU">
+                                <rect key="frame" x="60" y="670" width="320" height="164"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="住所" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMG-Az-LSh">
+                                <rect key="frame" x="10" y="670" width="40" height="164"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="hVr-oO-8sK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="B9S-gb-5sX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="B9S-gb-5sX" firstAttribute="bottom" secondItem="4Xt-YA-OYV" secondAttribute="bottom" constant="150" id="62H-gl-i6N"/>
                             <constraint firstItem="4Xt-YA-OYV" firstAttribute="top" secondItem="B9S-gb-5sX" secondAttribute="top" id="AlN-rA-hTC"/>
-                            <constraint firstItem="B9S-gb-5sX" firstAttribute="bottom" secondItem="4Xt-YA-OYV" secondAttribute="bottom" id="XXK-vi-JJK"/>
+                            <constraint firstItem="kf0-0C-qtU" firstAttribute="leading" secondItem="OMG-Az-LSh" secondAttribute="trailing" constant="10" id="GLf-fq-vK2"/>
+                            <constraint firstAttribute="bottom" secondItem="kf0-0C-qtU" secondAttribute="bottom" constant="10" id="J42-sZ-6W9"/>
+                            <constraint firstAttribute="bottom" secondItem="OMG-Az-LSh" secondAttribute="bottom" constant="10" id="OWl-du-VrR"/>
+                            <constraint firstItem="B9S-gb-5sX" firstAttribute="trailing" secondItem="kf0-0C-qtU" secondAttribute="trailing" constant="10" id="RXD-S2-qbT"/>
+                            <constraint firstItem="kf0-0C-qtU" firstAttribute="top" secondItem="4Xt-YA-OYV" secondAttribute="bottom" constant="10" id="bjj-dH-BJX"/>
+                            <constraint firstItem="OMG-Az-LSh" firstAttribute="top" secondItem="4Xt-YA-OYV" secondAttribute="bottom" constant="10" id="fBN-j8-Kl6"/>
+                            <constraint firstItem="OMG-Az-LSh" firstAttribute="leading" secondItem="B9S-gb-5sX" secondAttribute="leading" constant="10" id="k7Q-O1-InT"/>
                             <constraint firstItem="B9S-gb-5sX" firstAttribute="trailing" secondItem="4Xt-YA-OYV" secondAttribute="trailing" id="tL8-q9-Yow"/>
                             <constraint firstItem="4Xt-YA-OYV" firstAttribute="leading" secondItem="B9S-gb-5sX" secondAttribute="leading" id="vxX-ls-MOe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="czW-AD-3l8"/>
                     <connections>
+                        <outlet property="addressLabel" destination="kf0-0C-qtU" id="WAf-DS-LJd"/>
                         <outlet property="mapView" destination="4Xt-YA-OYV" id="zgC-Fu-gDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eRe-ET-GM2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2652" y="63"/>
+            <point key="canvasLocation" x="2649.2307692307691" y="62.559241706161131"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uC2-PL-YAb">

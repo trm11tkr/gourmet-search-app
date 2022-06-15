@@ -43,6 +43,7 @@ class ShopDetailViewController: UIViewController {
                 nextViewController.shopLatitude = shopLatitude
                 nextViewController.shopLongitude = shopLongitude
                 nextViewController.shopName = shop?.name
+                nextViewController.shopAddress = shop?.address
             }
         }
     }
