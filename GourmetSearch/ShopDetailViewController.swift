@@ -5,7 +5,6 @@ class ShopDetailViewController: UIViewController {
     @IBOutlet weak var shopTitle: UINavigationItem!
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var access: UILabel!
-    @IBOutlet weak var address: UILabel!
     @IBOutlet weak var open: UILabel!
     @IBOutlet weak var catchPhrase: UILabel!
     
@@ -22,7 +21,6 @@ class ShopDetailViewController: UIViewController {
         shopTitle.title = shop?.name
         shopName.text = shop?.name
         access.text = shop?.access
-        address.text = shop?.address
         open.text = shop?.open
         catchPhrase.text = shop?.genre.`catch`
         if let url = shop?.photo.mobile.mobileImage {
