@@ -22,6 +22,8 @@ struct Shop:Decodable {
     let logoImage: String
     let photo: Photo
     let genre: Genre
+    let latitude: Double
+    let longitude: Double
     private enum CodingKeys: String, CodingKey {
         case name
         case access
@@ -30,6 +32,8 @@ struct Shop:Decodable {
         case logoImage = "logo_image"
         case photo
         case genre
+        case latitude = "lat"
+        case longitude = "lng"
     }
 }
 
