@@ -13,6 +13,7 @@
 		7B0952F52852EEAA00A343BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B0952F32852EEAA00A343BA /* Main.storyboard */; };
 		7B0952F72852EEAD00A343BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B0952F62852EEAD00A343BA /* Assets.xcassets */; };
 		7B0952FA2852EEAD00A343BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */; };
+		7B0C272128598FB100F0DCB5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C272028598FB100F0DCB5 /* MapViewController.swift */; };
 		7B9AD5E028531ECC003BCE9A /* Gourmet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */; };
 		7B9AD5E328533EC3003BCE9A /* tableware.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9AD5E228533EC3003BCE9A /* tableware.png */; };
 		7B9AD5E528534BA0003BCE9A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */; };
@@ -35,6 +36,7 @@
 		7B0952F62852EEAD00A343BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B0952F92852EEAD00A343BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B0952FB2852EEAE00A343BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B0C272028598FB100F0DCB5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gourmet.swift; sourceTree = "<group>"; };
 		7B9AD5E228533EC3003BCE9A /* tableware.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableware.png; sourceTree = "<group>"; };
 		7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				7BD2016A2858BBF400A04259 /* ShopListTableViewCell.swift */,
 				7BD2016B2858BBF400A04259 /* ShopListTableViewCell.xib */,
 				7B0952F32852EEAA00A343BA /* Main.storyboard */,
+				7B0C272028598FB100F0DCB5 /* MapViewController.swift */,
 				7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */,
 				7B0952F62852EEAD00A343BA /* Assets.xcassets */,
 				7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */,
@@ -213,6 +216,7 @@
 				7B9AD5EE2856D54B003BCE9A /* GetApiMangagerDelegate.swift in Sources */,
 				7B0952F22852EEAA00A343BA /* ViewController.swift in Sources */,
 				7B0952EE2852EEAA00A343BA /* AppDelegate.swift in Sources */,
+				7B0C272128598FB100F0DCB5 /* MapViewController.swift in Sources */,
 				7B0952F02852EEAA00A343BA /* SceneDelegate.swift in Sources */,
 				7B9AD5E528534BA0003BCE9A /* ShopDetailViewController.swift in Sources */,
 				7B9AD5E028531ECC003BCE9A /* Gourmet.swift in Sources */,
