@@ -228,6 +228,35 @@
             </objects>
             <point key="canvasLocation" x="1784.6153846153845" y="63.270142180094787"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="coY-mB-TGP">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eRe-ET-GM2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="68t-uG-yxL" customClass="MapViewController" customModule="GourmetSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bm0-pr-VLh">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Xt-YA-OYV">
+                                <rect key="frame" x="0.0" y="44" width="390" height="666"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="B9S-gb-5sX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="B9S-gb-5sX" firstAttribute="bottom" secondItem="4Xt-YA-OYV" secondAttribute="bottom" constant="100" id="3Fl-Xj-OTW"/>
+                            <constraint firstItem="4Xt-YA-OYV" firstAttribute="top" secondItem="B9S-gb-5sX" secondAttribute="top" id="AlN-rA-hTC"/>
+                            <constraint firstItem="B9S-gb-5sX" firstAttribute="trailing" secondItem="4Xt-YA-OYV" secondAttribute="trailing" id="tL8-q9-Yow"/>
+                            <constraint firstItem="4Xt-YA-OYV" firstAttribute="leading" secondItem="B9S-gb-5sX" secondAttribute="leading" id="vxX-ls-MOe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="4Xt-YA-OYV" id="zgC-Fu-gDt"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2652" y="63"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="uC2-PL-YAb">
             <objects>
