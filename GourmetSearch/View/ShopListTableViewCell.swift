@@ -28,4 +28,16 @@ class ShopListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    // ロゴイメージが店舗ごとに設定されていない場合に置換する処理
+    func convertImage(shop: Shop) {
+        shopNameLabel.text = shop.name
+        accessLabel.text = shop.access
+        genreLabel.text = shop.genre.name
+        if shop.logoImage ==
+            "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif" {
+            logoImageView.image = UIImage(named: "tableware")
+        } else {
+            logoImageView.image = UIImage(url: shop.logoImage)
+        }
+    }
 }

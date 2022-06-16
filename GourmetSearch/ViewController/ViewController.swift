@@ -39,9 +39,9 @@ class ViewController: UIViewController {
     // TableViewCellタップ時の遷移処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToShopDetailViewController" {
-            if let nextVC = segue.destination as? ShopDetailViewController {
+            if let nextViewController = segue.destination as? ShopDetailViewController {
                 let index = sender as! Int
-                nextVC.shop = shops[index]
+                nextViewController.shop = shops[index]
             }
         }
     }
@@ -103,7 +103,6 @@ extension ViewController: CLLocationManagerDelegate {
             print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
             
             locationManager.requestWhenInUseAuthorization()
-//            alertLocationPermission(true)
             break
         case .denied:
             print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
@@ -141,10 +140,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopListTableViewCell", for: indexPath) as! ShopListTableViewCell
         
         let shop = shops[indexPath.row]
-        cell.shopNameLabel.text = shop.name
-        cell.accessLabel.text = shop.access
-        cell.genreLabel.text = shop.genre.name
-        cell.logoImageView.image = UIImage(url: shop.logoImage)
+        cell.convertImage(shop: shop)
         return cell
     }
     
@@ -163,20 +159,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
 // ロゴイメージが未設定用の画像の場合に、適した画像に置換
 extension UIImage {
-    convenience init(url: String) {
-        if (url == "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif") {
-            self.init(named: "tableware")!
-            return
+    convenience init?(url: String) {
+        guard let url = URL(string: url),
+              let data = try? Data(contentsOf: url) else {
+            return nil
         }
-        let url = URL(string: url)
-        do {
-            let data = try Data(contentsOf: url!)
-            self.init(data: data)!
-            return
-        } catch let err {
-            print("Error : \(err.localizedDescription)")
-        }
-        self.init()
+        self.init(data: data)
     }
 }
 
@@ -192,11 +180,7 @@ extension ViewController : GetApiManagerDelegate {
         shops = responseModel
         DispatchQueue.main.async {
             // 検索結果が0件の場合に表示
-            if(self.shops.count == 0) {
-                self.nothingLabel.isHidden = false
-            } else {
-                self.nothingLabel.isHidden = true
-            }
+            self.nothingLabel.isHidden = self.shops.count != 0
             self.resultsCount.text = "検索結果：\(resultsCount)件"
             self.shopListTable.reloadData()
         }
