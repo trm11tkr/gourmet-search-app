@@ -13,6 +13,18 @@
 		7B0952F52852EEAA00A343BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B0952F32852EEAA00A343BA /* Main.storyboard */; };
 		7B0952F72852EEAD00A343BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B0952F62852EEAD00A343BA /* Assets.xcassets */; };
 		7B0952FA2852EEAD00A343BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */; };
+		7B0C272128598FB100F0DCB5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0C272028598FB100F0DCB5 /* MapViewController.swift */; };
+		7B9AD5E028531ECC003BCE9A /* Gourmet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */; };
+		7B9AD5E328533EC3003BCE9A /* tableware.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9AD5E228533EC3003BCE9A /* tableware.png */; };
+		7B9AD5E528534BA0003BCE9A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */; };
+		7B9AD5EE2856D54B003BCE9A /* GetApiMangagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5ED2856D54B003BCE9A /* GetApiMangagerDelegate.swift */; };
+		7B9AD5F02856D5B1003BCE9A /* GetApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AD5EF2856D5B1003BCE9A /* GetApiManager.swift */; };
+		7B9AD5F42856F2BB003BCE9A /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9AD5F12856F2BB003BCE9A /* map.png */; };
+		7B9AD5F62856F2BB003BCE9A /* domeCover.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9AD5F32856F2BB003BCE9A /* domeCover.png */; };
+		7B9AD5F82856F682003BCE9A /* clock_1200.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9AD5F72856F682003BCE9A /* clock_1200.png */; };
+		7B9AD5FA2856F75F003BCE9A /* train.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B9AD5F92856F75E003BCE9A /* train.png */; };
+		7BD2016C2858BBF400A04259 /* ShopListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD2016A2858BBF400A04259 /* ShopListTableViewCell.swift */; };
+		7BD2016D2858BBF400A04259 /* ShopListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7BD2016B2858BBF400A04259 /* ShopListTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +36,18 @@
 		7B0952F62852EEAD00A343BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B0952F92852EEAD00A343BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B0952FB2852EEAE00A343BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B0C272028598FB100F0DCB5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gourmet.swift; sourceTree = "<group>"; };
+		7B9AD5E228533EC3003BCE9A /* tableware.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tableware.png; sourceTree = "<group>"; };
+		7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		7B9AD5ED2856D54B003BCE9A /* GetApiMangagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiMangagerDelegate.swift; sourceTree = "<group>"; };
+		7B9AD5EF2856D5B1003BCE9A /* GetApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetApiManager.swift; sourceTree = "<group>"; };
+		7B9AD5F12856F2BB003BCE9A /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		7B9AD5F32856F2BB003BCE9A /* domeCover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = domeCover.png; sourceTree = "<group>"; };
+		7B9AD5F72856F682003BCE9A /* clock_1200.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock_1200.png; sourceTree = "<group>"; };
+		7B9AD5F92856F75E003BCE9A /* train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = train.png; sourceTree = "<group>"; };
+		7BD2016A2858BBF400A04259 /* ShopListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListTableViewCell.swift; sourceTree = "<group>"; };
+		7BD2016B2858BBF400A04259 /* ShopListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopListTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +80,75 @@
 		7B0952EC2852EEAA00A343BA /* GourmetSearch */ = {
 			isa = PBXGroup;
 			children = (
+				7BC2B774285AC7890000980E /* View */,
+				7BC2B773285AC76E0000980E /* ViewController */,
+				7B9AD5EC2856D4E8003BCE9A /* Delegates */,
+				7B9AD5E92856D32F003BCE9A /* ApiManager */,
+				7B9AD5E128533DBA003BCE9A /* images */,
+				7B9AD5DE28531EAA003BCE9A /* Models */,
 				7B0952ED2852EEAA00A343BA /* AppDelegate.swift */,
 				7B0952EF2852EEAA00A343BA /* SceneDelegate.swift */,
-				7B0952F12852EEAA00A343BA /* ViewController.swift */,
-				7B0952F32852EEAA00A343BA /* Main.storyboard */,
 				7B0952F62852EEAD00A343BA /* Assets.xcassets */,
-				7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */,
 				7B0952FB2852EEAE00A343BA /* Info.plist */,
 			);
 			path = GourmetSearch;
+			sourceTree = "<group>";
+		};
+		7B9AD5DE28531EAA003BCE9A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7B9AD5DF28531ECC003BCE9A /* Gourmet.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7B9AD5E128533DBA003BCE9A /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7B9AD5F72856F682003BCE9A /* clock_1200.png */,
+				7B9AD5F92856F75E003BCE9A /* train.png */,
+				7B9AD5F32856F2BB003BCE9A /* domeCover.png */,
+				7B9AD5F12856F2BB003BCE9A /* map.png */,
+				7B9AD5E228533EC3003BCE9A /* tableware.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		7B9AD5E92856D32F003BCE9A /* ApiManager */ = {
+			isa = PBXGroup;
+			children = (
+				7B9AD5EF2856D5B1003BCE9A /* GetApiManager.swift */,
+			);
+			path = ApiManager;
+			sourceTree = "<group>";
+		};
+		7B9AD5EC2856D4E8003BCE9A /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				7B9AD5ED2856D54B003BCE9A /* GetApiMangagerDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		7BC2B773285AC76E0000980E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7B0952F12852EEAA00A343BA /* ViewController.swift */,
+				7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */,
+				7B0C272028598FB100F0DCB5 /* MapViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7BC2B774285AC7890000980E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */,
+				7B0952F32852EEAA00A343BA /* Main.storyboard */,
+				7BD2016A2858BBF400A04259 /* ShopListTableViewCell.swift */,
+				7BD2016B2858BBF400A04259 /* ShopListTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +211,13 @@
 			files = (
 				7B0952FA2852EEAD00A343BA /* LaunchScreen.storyboard in Resources */,
 				7B0952F72852EEAD00A343BA /* Assets.xcassets in Resources */,
+				7B9AD5FA2856F75F003BCE9A /* train.png in Resources */,
+				7B9AD5F62856F2BB003BCE9A /* domeCover.png in Resources */,
 				7B0952F52852EEAA00A343BA /* Main.storyboard in Resources */,
+				7B9AD5E328533EC3003BCE9A /* tableware.png in Resources */,
+				7B9AD5F42856F2BB003BCE9A /* map.png in Resources */,
+				7B9AD5F82856F682003BCE9A /* clock_1200.png in Resources */,
+				7BD2016D2858BBF400A04259 /* ShopListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +228,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B9AD5F02856D5B1003BCE9A /* GetApiManager.swift in Sources */,
+				7B9AD5EE2856D54B003BCE9A /* GetApiMangagerDelegate.swift in Sources */,
 				7B0952F22852EEAA00A343BA /* ViewController.swift in Sources */,
 				7B0952EE2852EEAA00A343BA /* AppDelegate.swift in Sources */,
+				7B0C272128598FB100F0DCB5 /* MapViewController.swift in Sources */,
 				7B0952F02852EEAA00A343BA /* SceneDelegate.swift in Sources */,
+				7B9AD5E528534BA0003BCE9A /* ShopDetailViewController.swift in Sources */,
+				7B9AD5E028531ECC003BCE9A /* Gourmet.swift in Sources */,
+				7BD2016C2858BBF400A04259 /* ShopListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +312,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -290,11 +386,13 @@
 				DEVELOPMENT_TEAM = H99ZMXT46L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GourmetSearch/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "現在地を取得するために位置情報をオンにしてください";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,11 +416,13 @@
 				DEVELOPMENT_TEAM = H99ZMXT46L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GourmetSearch/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "現在地を取得するために位置情報をオンにしてください";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
