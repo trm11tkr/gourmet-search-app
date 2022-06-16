@@ -103,7 +103,6 @@ extension ViewController: CLLocationManagerDelegate {
             print("ユーザーはこのアプリケーションに関してまだ選択を行っていません")
             
             locationManager.requestWhenInUseAuthorization()
-//            alertLocationPermission(true)
             break
         case .denied:
             print("ローケーションサービスの設定が「無効」になっています (ユーザーによって、明示的に拒否されています）")
