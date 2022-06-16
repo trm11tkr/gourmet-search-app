@@ -39,9 +39,9 @@ class ViewController: UIViewController {
     // TableViewCellタップ時の遷移処理
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ToShopDetailViewController" {
-            if let nextVC = segue.destination as? ShopDetailViewController {
+            if let nextViewController = segue.destination as? ShopDetailViewController {
                 let index = sender as! Int
-                nextVC.shop = shops[index]
+                nextViewController.shop = shops[index]
             }
         }
     }
