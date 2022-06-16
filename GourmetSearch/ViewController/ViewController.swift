@@ -180,11 +180,7 @@ extension ViewController : GetApiManagerDelegate {
         shops = responseModel
         DispatchQueue.main.async {
             // 検索結果が0件の場合に表示
-            if(self.shops.count == 0) {
-                self.nothingLabel.isHidden = false
-            } else {
-                self.nothingLabel.isHidden = true
-            }
+            self.nothingLabel.isHidden = self.shops.count != 0
             self.resultsCount.text = "検索結果：\(resultsCount)件"
             self.shopListTable.reloadData()
         }
