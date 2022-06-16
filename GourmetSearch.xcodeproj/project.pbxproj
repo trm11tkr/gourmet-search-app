@@ -80,20 +80,15 @@
 		7B0952EC2852EEAA00A343BA /* GourmetSearch */ = {
 			isa = PBXGroup;
 			children = (
+				7BC2B774285AC7890000980E /* View */,
+				7BC2B773285AC76E0000980E /* ViewController */,
 				7B9AD5EC2856D4E8003BCE9A /* Delegates */,
 				7B9AD5E92856D32F003BCE9A /* ApiManager */,
 				7B9AD5E128533DBA003BCE9A /* images */,
 				7B9AD5DE28531EAA003BCE9A /* Models */,
 				7B0952ED2852EEAA00A343BA /* AppDelegate.swift */,
 				7B0952EF2852EEAA00A343BA /* SceneDelegate.swift */,
-				7B0952F12852EEAA00A343BA /* ViewController.swift */,
-				7BD2016A2858BBF400A04259 /* ShopListTableViewCell.swift */,
-				7BD2016B2858BBF400A04259 /* ShopListTableViewCell.xib */,
-				7B0952F32852EEAA00A343BA /* Main.storyboard */,
-				7B0C272028598FB100F0DCB5 /* MapViewController.swift */,
-				7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */,
 				7B0952F62852EEAD00A343BA /* Assets.xcassets */,
-				7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */,
 				7B0952FB2852EEAE00A343BA /* Info.plist */,
 			);
 			path = GourmetSearch;
@@ -133,6 +128,27 @@
 				7B9AD5ED2856D54B003BCE9A /* GetApiMangagerDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		7BC2B773285AC76E0000980E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7B0952F12852EEAA00A343BA /* ViewController.swift */,
+				7B9AD5E428534BA0003BCE9A /* ShopDetailViewController.swift */,
+				7B0C272028598FB100F0DCB5 /* MapViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7BC2B774285AC7890000980E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B0952F82852EEAD00A343BA /* LaunchScreen.storyboard */,
+				7B0952F32852EEAA00A343BA /* Main.storyboard */,
+				7BD2016A2858BBF400A04259 /* ShopListTableViewCell.swift */,
+				7BD2016B2858BBF400A04259 /* ShopListTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
