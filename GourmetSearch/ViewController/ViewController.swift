@@ -140,10 +140,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopListTableViewCell", for: indexPath) as! ShopListTableViewCell
         
         let shop = shops[indexPath.row]
-        cell.shopNameLabel.text = shop.name
-        cell.accessLabel.text = shop.access
-        cell.genreLabel.text = shop.genre.name
-        cell.logoImageView.image = UIImage(url: shop.logoImage)
+        cell.convertImage(shop: shop)
         return cell
     }
     
@@ -162,20 +159,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
 // ロゴイメージが未設定用の画像の場合に、適した画像に置換
 extension UIImage {
-    convenience init(url: String) {
-        if (url == "https://imgfp.hotp.jp/SYS/cmn/images/common/diary/custom/m30_img_noimage.gif") {
-            self.init(named: "tableware")!
-            return
+    convenience init?(url: String) {
+        guard let url = URL(string: url),
+              let data = try? Data(contentsOf: url) else {
+            return nil
         }
-        let url = URL(string: url)
-        do {
-            let data = try Data(contentsOf: url!)
-            self.init(data: data)!
-            return
-        } catch let err {
-            print("Error : \(err.localizedDescription)")
-        }
-        self.init()
+        self.init(data: data)
     }
 }
 
