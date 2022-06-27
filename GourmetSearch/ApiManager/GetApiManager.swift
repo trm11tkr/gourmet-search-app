@@ -15,9 +15,17 @@ class GetApiManager {
     
     // API通信
     func onGetResponse(latitude: Double, longitude: Double ,range: Int) {
-        guard let url = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=\(key)&lat=\(latitude)&lng=\(longitude)&range=\(range)&count=100&format=json") else {
-            return
-        }
+        var baseUrl = URLComponents(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/")
+        baseUrl?.queryItems = [
+            URLQueryItem(name: "key", value: key),
+            URLQueryItem(name: "lat", value: String(latitude)),
+            URLQueryItem(name: "lng", value: String(longitude)),
+            URLQueryItem(name: "range", value: String(range)),
+            URLQueryItem(name: "count", value: "100"),
+            URLQueryItem(name: "format", value: "json"),
+        ]
+        
+        guard let url = baseUrl?.url else { return}
         
         let task: URLSessionTask = URLSession.shared.dataTask(with: url, completionHandler: { [self](data, response, error) in
             
